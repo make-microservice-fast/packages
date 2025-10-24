@@ -15,7 +15,7 @@
     "generate": "node scripts/generate-export.js",
     "build:packages": "npm run generate && tsup src/index.ts --clean --tsconfig tsconfig.app.json --format esm --dts && cp src/index.css dist/index.css",
     "dev": "vite",
-    "build": "tsc -b && vite build",
+    "build": "npm run generate && tsc -b && vite build",
     "lint": "eslint .",
     "preview": "vite preview"
   },
