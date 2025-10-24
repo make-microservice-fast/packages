@@ -1,0 +1,46 @@
+name: Release Package
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    permissions:
+      packages: write
+      contents: write
+      issues: write
+      pull-requests: write
+      id-token: write
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v5
+        with:
+          persist-credentials: false
+          fetch-depth: 0
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 24 # 你的 Node.js 版本
+
+      - name: Install pnpm
+        run: corepack enable pnpm # 确保 pnpm 可用
+
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+
+      - name: Export api
+        run: npm run api-export
+
+      - name: Release npm
+        env:
+          GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
+          NPM_TOKEN: ${{ secrets.GH_TOKEN }}
+          GH_TOKEN: ${{ secrets.GH_TOKEN }}
+          NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+        run: npm run release
