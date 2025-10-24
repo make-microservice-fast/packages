@@ -13,7 +13,7 @@
   "scripts": {
     "release": "semantic-release --branches main",
     "generate": "node scripts/generate-export.js",
-    "build:packages": "npm run generate && tsup src/index.ts --tsconfig tsconfig.app.json --format esm --dts",
+    "build:packages": "npm run generate && tsup src/index.ts --clean --tsconfig tsconfig.app.json --format esm --dts && cp src/index.css dist/index.css",
     "dev": "vite",
     "build": "tsc -b && vite build",
     "lint": "eslint .",
