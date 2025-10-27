@@ -19,6 +19,9 @@
       }
     }
   },
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com"
+  },
   "scripts": {
     "dev": "vite",
     "build": "tsup --clean --dts && cp src/style.css dist/style.css",
