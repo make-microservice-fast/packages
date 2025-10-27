@@ -25,7 +25,7 @@ export default defineConfig({
       formats: ['es', 'umd'],
       fileName: (format) => {
         if (format === 'es') {
-          return 'index.es.js';
+          return 'index.js';
         }
         if (format === 'umd') {
           return 'index.umd.cjs';
