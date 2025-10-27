@@ -19,6 +19,10 @@
     "lint": "eslint .",
     "preview": "vite preview"
   },
+  "peerDependencies": {
+    "@base-ui-components/react": "1.0.0-beta.4"
+  },
+  
   "dependencies": {
     "@base-ui-components/react": "1.0.0-beta.4",
     "@hookform/resolvers": "^5.2.2",
