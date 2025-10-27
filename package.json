@@ -13,7 +13,7 @@
   "scripts": {
     "release": "semantic-release --branches main",
     "generate": "node scripts/generate-export.js",
-    "build:packages": "npm run generate && tsup src/index.ts --clean --tsconfig tsconfig.app.json --format esm --dts && cp src/index.css dist/index.css",
+    "build:packages": "rm -rf dist && npm run generate && tsup src/index.ts --clean --tsconfig tsconfig.app.json --format esm --dts && cp src/index.css dist/index.css",
     "dev": "vite",
     "build": "npm run generate && tsc -b && vite build",
     "lint": "eslint .",
@@ -22,7 +22,7 @@
   "peerDependencies": {
     "@base-ui-components/react": "1.0.0-beta.4"
   },
-  
+
   "dependencies": {
     "@base-ui-components/react": "1.0.0-beta.4",
     "@hookform/resolvers": "^5.2.2",
