@@ -31,10 +31,10 @@ jobs:
           node-version: 24 # 你的 Node.js 版本
 
       - name: Install dependencies
-        run: pnpm install
+        run: npm install
 
       - name: Export packages
-        run: pnpm build
+        run: npm run build
 
       - name: Release npm
         env:
@@ -43,4 +43,4 @@ jobs:
           GH_TOKEN: ${{ secrets.GH_TOKEN }}
           NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
-        run: pnpm release
+        run: npm run release
