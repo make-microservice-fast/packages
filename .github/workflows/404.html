@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>Redirecting...</title>
+    <script>
+      // GitHub Pages doesn't support server-side redirects,
+      // so we use client-side JavaScript to redirect 404s to index.html
+      // while preserving the original path for the SPA router to handle.
+      var segmentCount = (window.location.pathname.match(/\//g) || []).length;
+      var redirect =
+        window.location.protocol +
+        "//" +
+        window.location.hostname +
+        (window.location.port ? ":" + window.location.port : "") +
+        "/";
+
+      // Adjust the path to index.html if your GitHub Pages URL is like `username.github.io/repo-name/`
+      // If your GitHub Pages is served from the root (user/organization pages), no prefix needed.
+      // If it's a project page (repo.github.io/project-name), you might need to add /project-name/
+
+      // Example: For project pages like `username.github.io/my-repo/`
+      // Make sure your SPA router base path is correctly set if using subpaths.
+      var base = document.location.pathname.substring(
+        0,
+        document.location.pathname.lastIndexOf("/") + 1
+      );
+
+      // This logic works for both root level (user.github.io) and project level (user.github.io/repo-name) GitHub Pages.
+      // It redirects to the root of the current GitHub Pages site.
+      window.location.replace(
+        redirect +
+          base.split("/")[1] +
+          "/" +
+          "?p=" +
+          window.location.pathname.slice(1) +
+          window.location.search
+      );
+
+      // A simpler version for project pages when your SPA's base path is correctly set:
+      // window.location.replace(
+      //   window.location.protocol + '//' + window.location.hostname + (window.location.port ? ':' + window.location.port : '') +
+      //   '/your-repo-name' + // Replace 'your-repo-name' with your repository name if it's a project page
+      //   '/?p=' + window.location.pathname.slice(1) + window.location.search
+      // );
+
+      // A more robust solution that uses the exact base path:
+      (function () {
+        var redirect = sessionStorage.getItem("redirect");
+        if (redirect) {
+          sessionStorage.removeItem("redirect");
+          window.location.replace(redirect);
+        } else if (location.pathname.includes("/")) {
+          // Only redirect if a specific path is requested
+          var path = location.pathname.slice(1);
+          if (path.endsWith("/")) {
+            // Handle trailing slash
+            path = path.substring(0, path.length - 1);
+          }
+          sessionStorage.setItem(
+            "redirect",
+            location.protocol +
+              "//" +
+              location.hostname +
+              (location.port ? ":" + location.port : "") +
+              (location.pathname.split("/")[1]
+                ? "/" + location.pathname.split("/")[1]
+                : "") +
+              "/#" +
+              path +
+              location.search
+          );
+          location.replace(
+            location.protocol +
+              "//" +
+              location.hostname +
+              (location.port ? ":" + location.port : "") +
+              (location.pathname.split("/")[1]
+                ? "/" + location.pathname.split("/")[1]
+                : "") +
+              "/"
+          );
+        }
+      })();
+    </script>
+  </head>
+  <body>
+    <h1>Redirecting to the Single Page Application...</h1>
+  </body>
+</html>
