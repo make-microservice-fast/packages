@@ -8,7 +8,8 @@
     "build": "tsc -b && vite build",
     "release": "semantic-release --branches main",
     "lint": "eslint .",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "prepare": "husky"
   },
   "files": [
     "dist"
@@ -82,6 +83,8 @@
     "recharts": "^3.3.0"
   },
   "devDependencies": {
+    "@commitlint/cli": "^20.1.0",
+    "@commitlint/config-conventional": "^20.0.0",
     "@eslint/js": "^9.36.0",
     "@types/node": "^24.6.0",
     "@types/react": "^19.1.16",
@@ -91,6 +94,7 @@
     "eslint-plugin-react-hooks": "^5.2.0",
     "eslint-plugin-react-refresh": "^0.4.22",
     "globals": "^16.4.0",
+    "husky": "^9.1.7",
     "semantic-release": "^25.0.1",
     "tsup": "^8.5.0",
     "typescript": "~5.9.3",
