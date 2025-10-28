@@ -1,6 +1,6 @@
 {
-  "name": "packages",
-  "version": "0.0.0",
+  "name": "@make-microservice-fast/packages",
+  "version": "0.0.1",
   "type": "module",
   "files": [
     "dist"
