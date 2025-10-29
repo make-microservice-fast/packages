@@ -1,0 +1,52 @@
+name: Deploy SPA to GitHub Pages
+
+on:
+  push:
+    branches:
+      - main # 部署的主分支
+
+jobs:
+  build-and-deploy:
+    permissions:
+      contents: read
+      id-token: write
+      pages: write
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout 仓库
+        uses: actions/checkout@v4
+
+      - name: 设置 Node.js 环境
+        uses: actions/setup-node@v4
+        with:
+          node-version: "18" # 或者你的项目所需的 Node.js 版本
+          cache: "npm" # 缓存 npm 依赖
+
+      - name: 安装依赖
+        run: npm install
+
+      - name: 构建项目
+        run: npm run build # 你的 SPA 构建命令，例如 React 的 `build` 脚本
+        env: # 如果你的 SPA 需要特定的环境变量，可以在这里设置
+          CI: true # 对于 Create React App，通常需要设置 CI 为 true
+
+      # 这一步是关键，确保你的 404.html 存在于构建输出目录
+      # 如果你的构建工具没有自动生成或复制 404.html，
+      # 你需要在构建脚本中或在此之前手动复制它。
+      - name: 复制 404.html 到构建目录 (如果需要)
+        run: cp .github/workflows/404.html build/404.html # 假设你的 404.html 在 .github/workflows 且输出是 dist
+        # 实际路径请根据你项目存放 404.html 的位置和构建输出目录调整。
+        # 如果你已经将 404.html 放在了源目录（例如 public/ 或 static/）并让构建工具处理，则不需要此步骤。
+        # 最好的方式是让构建工具来处理，或者放在你构建后会拷贝进去的公共静态资源文件夹中。
+
+      - name: 配置 GitHub Pages
+        uses: actions/configure-pages@v4
+
+      - name: 上传 Artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: "./build" # 替换为你的 SPA 项目的实际构建输出目录，例如 'build', 'public' 等
+
+      - name: 部署到 GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
