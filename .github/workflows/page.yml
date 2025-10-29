@@ -8,7 +8,9 @@ on:
 jobs:
   build-and-deploy:
     permissions:
-       id-token: write
+      contents: read
+      id-token: write
+      pages: write
     runs-on: ubuntu-latest
     steps:
       - name: Checkout 仓库
