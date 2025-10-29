@@ -33,8 +33,8 @@ jobs:
       # 这一步是关键，确保你的 404.html 存在于构建输出目录
       # 如果你的构建工具没有自动生成或复制 404.html，
       # 你需要在构建脚本中或在此之前手动复制它。
-      - name: 复制 404.html 到构建目录 (如果需要)
-        run: cp .github/workflows/404.html build/404.html # 假设你的 404.html 在 .github/workflows 且输出是 dist
+      # - name: 复制 404.html 到构建目录 (如果需要)
+      #   run: cp .github/workflows/404.html build/404.html # 假设你的 404.html 在 .github/workflows 且输出是 dist
         # 实际路径请根据你项目存放 404.html 的位置和构建输出目录调整。
         # 如果你已经将 404.html 放在了源目录（例如 public/ 或 static/）并让构建工具处理，则不需要此步骤。
         # 最好的方式是让构建工具来处理，或者放在你构建后会拷贝进去的公共静态资源文件夹中。

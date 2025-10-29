@@ -4,7 +4,7 @@ import { ghPages } from "vite-plugin-gh-pages";
 
 // https://vite.dev/config/
 export default defineConfig({
-  base: "packages",
+  base: "/packages",
   plugins: [react(), ghPages()],
   build: {
     outDir: "build", // 将输出目录改为 'dist-custom'
