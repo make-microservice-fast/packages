@@ -10,7 +10,7 @@ import {
   Text,
   TextInput,
 } from "@mantine/core";
-import { useForm } from "@mantine/form";
+import { matchesField, useForm } from "@mantine/form";
 import { IconCheck, IconX } from "@tabler/icons-react";
 import { useState } from "react";
 export interface RegisterFormProps {
@@ -67,7 +67,10 @@ export interface RegisterProps {
 const Register = ({ initialValues, onSignUp, login_url }: RegisterProps) => {
   const [hidePasswordTips, setHidePasswordTips] = useState(true);
   const form = useForm({
-    initialValues,
+    initialValues: {
+      ...initialValues,
+      confirmPassword: "",
+    },
     validate: {
       email: (value) => {
         if (!value) return "Email is required";
@@ -78,6 +81,7 @@ const Register = ({ initialValues, onSignUp, login_url }: RegisterProps) => {
         val.length <= 6
           ? "Password should include at least 6 characters"
           : null,
+      confirmPassword: matchesField("password", "Passwords are not the same"),
     },
   });
   const checks = requirements.map((requirement, index) => (
@@ -139,6 +143,15 @@ const Register = ({ initialValues, onSignUp, login_url }: RegisterProps) => {
           </Group>
 
           {!hidePasswordTips && checks}
+          <PasswordInput
+            label="Confirm Password"
+            placeholder="confirmPassword"
+            value={form.values.confirmPassword}
+            onChange={(e) =>
+              form.setFieldValue("confirmPassword", e.currentTarget.value)
+            }
+            error={form.errors.confirmPassword}
+          />
 
           <Group justify="space-between" mt="xl">
             <Anchor href={login_url ?? "/login"} size="xs" c="dimmed">
