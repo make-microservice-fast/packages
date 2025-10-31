@@ -2,7 +2,7 @@ import { useNavigate } from "react-router";
 import Login, { type LoginFormProps } from "../../components/pages/login";
 import { authClient } from "../lib/auth-client";
 
-const LoginExample1 = () => {
+const LoginExample = () => {
   const navigate = useNavigate();
   const login = (value: LoginFormProps) => {
     authClient.signIn
@@ -19,7 +19,6 @@ const LoginExample1 = () => {
     <Login
       image="https://cdn.pixabay.com/photo/2025/09/29/11/48/feather-9862263_960_720.jpg"
       onLogin={login}
-      
       initialValues={{
         email: "",
         password: "",
@@ -29,4 +28,4 @@ const LoginExample1 = () => {
     />
   );
 };
-export default LoginExample1;
+export default LoginExample;

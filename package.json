@@ -78,6 +78,7 @@
     "@mantine/spotlight": "^8.3.5",
     "@mantine/tiptap": "^8.3.5",
     "@mantinex/dev-icons": "^2.0.0",
+    "@tabler/icons-react": "^3.35.0",
     "@tiptap/extension-link": "^3.8.0",
     "@tiptap/pm": "^3.8.0",
     "@tiptap/react": "^3.8.0",
