@@ -6,7 +6,6 @@ import {
   Group,
   Paper,
   PasswordInput,
-  Text,
   TextInput,
 } from "@mantine/core";
 import { useForm } from "@mantine/form";
@@ -52,24 +51,29 @@ const Login = ({
   return (
     <div className="w-screen h-screen flex">
       <div className="w-1/2 min-h-screen flex justify-center items-center">
-        <Paper className="w-full max-w-md">
-          <Text size="lg" fw={500}>
-            Welcome back
-          </Text>
+        <Paper className="w-full max-w-md p-3.5">
+          {(twitterLogin || googleLogin) && (
+            <>
+              <Group grow mb="md" mt="md">
+                {googleLogin && (
+                  <GoogleButton radius="xl" onClick={googleLogin}>
+                    Google
+                  </GoogleButton>
+                )}
+                {twitterLogin && (
+                  <TwitterButton radius="xl" onClick={twitterLogin}>
+                    Twitter
+                  </TwitterButton>
+                )}
+              </Group>
+              <Divider
+                label="Or continue with email"
+                labelPosition="center"
+                my="lg"
+              />
+            </>
+          )}
 
-          <Group grow mb="md" mt="md">
-            <GoogleButton radius="xl" onClick={googleLogin}>
-              Google
-            </GoogleButton>
-            <TwitterButton radius="xl" onClick={twitterLogin}>
-              Twitter
-            </TwitterButton>
-          </Group>
-          <Divider
-            label="Or continue with email"
-            labelPosition="center"
-            my="lg"
-          />
           <form onSubmit={form.onSubmit(onLogin)} className="space-y-3">
             <TextInput
               label="Email"
