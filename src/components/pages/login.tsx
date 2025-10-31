@@ -22,10 +22,19 @@ export interface LoginProps {
   image?: string;
   initialValues: LoginFormProps;
   onLogin: (values: LoginFormProps) => void;
+  googleLogin?: () => void;
+  twitterLogin?: () => void;
   register_url?: string;
 }
 
-const Login = ({ image, onLogin, initialValues, register_url }: LoginProps) => {
+const Login = ({
+  image,
+  onLogin,
+  googleLogin,
+  twitterLogin,
+  initialValues,
+  register_url,
+}: LoginProps) => {
   const form = useForm({
     initialValues,
     validate: {
@@ -49,8 +58,12 @@ const Login = ({ image, onLogin, initialValues, register_url }: LoginProps) => {
           </Text>
 
           <Group grow mb="md" mt="md">
-            <GoogleButton radius="xl">Google</GoogleButton>
-            <TwitterButton radius="xl">Twitter</TwitterButton>
+            <GoogleButton radius="xl" onClick={googleLogin}>
+              Google
+            </GoogleButton>
+            <TwitterButton radius="xl" onClick={twitterLogin}>
+              Twitter
+            </TwitterButton>
           </Group>
           <Divider
             label="Or continue with email"

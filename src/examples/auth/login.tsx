@@ -19,6 +19,14 @@ const LoginExample1 = () => {
     <Login
       image="https://cdn.pixabay.com/photo/2025/09/29/11/48/feather-9862263_960_720.jpg"
       onLogin={login}
+      googleLogin={() => {
+        authClient.signIn.social({
+          provider: "google",
+        });
+      }}
+      twitterLogin={() => {
+        authClient.signIn.social({ provider: "twitter" });
+      }}
       initialValues={{
         email: "",
         password: "",
