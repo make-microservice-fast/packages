@@ -1,63 +1,23 @@
 import {
   Anchor,
-  Box,
   Button,
-  Center,
   Group,
   Paper,
   PasswordInput,
   Progress,
-  Text,
   TextInput,
 } from "@mantine/core";
 import { matchesField, useForm } from "@mantine/form";
-import { IconCheck, IconX } from "@tabler/icons-react";
 import { useState } from "react";
+import { PasswordRequirement } from "../ui/password-requirement";
+import { getStrength, requirements } from "../../utils/password";
 export interface RegisterFormProps {
   name: string;
   email: string;
   password: string;
 }
 
-function PasswordRequirement({
-  meets,
-  label,
-}: {
-  meets: boolean;
-  label: string;
-}) {
-  return (
-    <Text component="div" c={meets ? "teal" : "red"} mt={5} size="sm">
-      <Center inline>
-        {meets ? (
-          <IconCheck size={14} stroke={1.5} />
-        ) : (
-          <IconX size={14} stroke={1.5} />
-        )}
-        <Box ml={7}>{label}</Box>
-      </Center>
-    </Text>
-  );
-}
 
-const requirements = [
-  { re: /[0-9]/, label: "Includes number" },
-  { re: /[a-z]/, label: "Includes lowercase letter" },
-  { re: /[A-Z]/, label: "Includes uppercase letter" },
-  { re: /[$&+,:;=?@#|'<>.^*()%!-]/, label: "Includes special symbol" },
-];
-
-function getStrength(password: string) {
-  let multiplier = password.length > 5 ? 0 : 1;
-
-  requirements.forEach((requirement) => {
-    if (!requirement.re.test(password)) {
-      multiplier += 1;
-    }
-  });
-
-  return Math.max(100 - (100 / (requirements.length + 1)) * multiplier, 0);
-}
 
 export interface RegisterProps {
   onSignUp: (v: RegisterFormProps) => void;
