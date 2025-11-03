@@ -1,7 +1,10 @@
 import { createBrowserRouter } from "react-router";
-import LoginExample1 from "./examples/auth/login";
-import Register from "./examples/auth/register";
+import ForgetPasswordExample from "./examples/auth/forget-password";
+import LoginExample from "./examples/auth/login";
+import ProfileExample from "./examples/auth/profile";
+import RegisterExample from "./examples/auth/register";
 import Layout from "./layout";
+import ResetPasswordExample from "./examples/auth/reset-password";
 
 export const router = createBrowserRouter(
   [
@@ -9,10 +12,22 @@ export const router = createBrowserRouter(
       path: "/",
       Component: Layout,
       children: [
-        { path: "login-1", Component: LoginExample1 },
+        { path: "login", Component: LoginExample },
         {
           path: "register",
-          Component: Register,
+          Component: RegisterExample,
+        },
+        {
+          path: "profile",
+          Component: ProfileExample,
+        },
+        {
+          path: "forget-password",
+          Component: ForgetPasswordExample,
+        },
+        {
+          path: "reset-password",
+          Component: ResetPasswordExample,
         },
       ],
     },
