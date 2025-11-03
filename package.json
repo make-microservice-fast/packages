@@ -4,7 +4,7 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build:packages": "rm -rf dist && cp ./src/index.css ./dist && tsup --clean --dts",
+    "build:packages": "tsup --clean --dts && cp ./src/index.css ./dist",
     "build": "tsc -b && vite build",
     "release": "semantic-release --branches main",
     "lint": "eslint .",
