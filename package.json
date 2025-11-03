@@ -4,7 +4,7 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build:packages": "tsup --clean --dts && cp ./src/index.css ./dist",
+    "build:packages": "tsup --clean --dts && npx @tailwindcss/cli -i ./src/index.css -o ./src/style.css && cp ./src/style.css ./dist",
     "build": "tsc -b && vite build",
     "release": "semantic-release --branches main",
     "lint": "eslint .",
