@@ -1,6 +1,6 @@
 import { TextInput } from "@mantine/core";
-import Profile from "../../components/pages/profile";
 import { UserFormProvider, useUserForm } from "../../context/profile-context";
+import { Profile } from "../../components/pages/profile";
 
 const ProfileExample = () => {
   const form = useUserForm({

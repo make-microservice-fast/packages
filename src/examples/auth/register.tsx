@@ -1,5 +1,6 @@
 import { useNavigate } from "react-router";
-import Register, {
+import {
+  Register,
   type RegisterFormProps,
 } from "../../components/pages/register";
 import { authClient } from "../lib/auth-client";

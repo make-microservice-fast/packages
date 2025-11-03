@@ -6,7 +6,7 @@ import { PasswordRequirement } from "../ui/password-requirement";
 export interface ResetPasswordProps {
   submit: (data: { password: string }) => void;
 }
-const ResetPassword = ({ submit }: ResetPasswordProps) => {
+export const ResetPassword = ({ submit }: ResetPasswordProps) => {
   const [hidePasswordTips, setHidePasswordTips] = useState(true);
 
   const form = useForm({
@@ -86,4 +86,3 @@ const ResetPassword = ({ submit }: ResetPasswordProps) => {
     </>
   );
 };
-export default ResetPassword;

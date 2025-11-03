@@ -1,4 +1,4 @@
-import ResetPassword from "../../components/pages/reset-password";
+import { ResetPassword } from "../../components/pages/reset-password";
 
 const ResetPasswordExample = () => {
   return (
