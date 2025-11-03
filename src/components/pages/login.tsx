@@ -26,7 +26,7 @@ export interface LoginProps {
   register_url?: string;
 }
 
-const Login = ({
+export const Login = ({
   image,
   onLogin,
   googleLogin,
@@ -124,4 +124,3 @@ const Login = ({
     </div>
   );
 };
-export default Login;

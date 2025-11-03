@@ -9,22 +9,24 @@ import {
 } from "@mantine/core";
 import { matchesField, useForm } from "@mantine/form";
 import { useState } from "react";
-import { PasswordRequirement } from "../ui/password-requirement";
 import { getStrength, requirements } from "../../utils/password";
+import { PasswordRequirement } from "../ui/password-requirement";
 export interface RegisterFormProps {
   name: string;
   email: string;
   password: string;
 }
 
-
-
 export interface RegisterProps {
   onSignUp: (v: RegisterFormProps) => void;
   initialValues: RegisterFormProps;
   login_url?: string;
 }
-const Register = ({ initialValues, onSignUp, login_url }: RegisterProps) => {
+export const Register = ({
+  initialValues,
+  onSignUp,
+  login_url,
+}: RegisterProps) => {
   const [hidePasswordTips, setHidePasswordTips] = useState(true);
   const form = useForm({
     initialValues: {
@@ -126,4 +128,3 @@ const Register = ({ initialValues, onSignUp, login_url }: RegisterProps) => {
     </div>
   );
 };
-export default Register;

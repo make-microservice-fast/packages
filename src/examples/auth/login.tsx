@@ -1,5 +1,5 @@
 import { useNavigate } from "react-router";
-import Login, { type LoginFormProps } from "../../components/pages/login";
+import { Login, type LoginFormProps } from "../../components/pages/login";
 import { authClient } from "../lib/auth-client";
 
 const LoginExample = () => {
