@@ -1,8 +1,8 @@
 import { Button, PasswordInput, TextInput } from "@mantine/core";
-import { useUserFormContext } from "../../context/profile-context";
+import { useUserProfileFormContext } from "../../context/profile-context";
 
 export const Profile = () => {
-  const form = useUserFormContext();
+  const form = useUserProfileFormContext();
   return (
     <div className="space-y-3">
       <TextInput
@@ -27,4 +27,3 @@ export const Profile = () => {
     </div>
   );
 };
-

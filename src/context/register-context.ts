@@ -1,7 +1,7 @@
 import { createFormContext } from "@mantine/form";
 
 export const [
-  UserProfileFormProvider,
-  useUserProfileFormContext,
-  useUserProfileForm,
+  RegisterFormProvider,
+  useRegisterFormContext,
+  useRegisterForm,
 ] = createFormContext<unknown>();

@@ -1,9 +1,12 @@
 import { TextInput } from "@mantine/core";
-import { UserFormProvider, useUserForm } from "../../context/profile-context";
 import { Profile } from "../../components/pages/profile";
+import {
+  UserProfileFormProvider,
+  useUserProfileForm,
+} from "../../context/profile-context";
 
 const ProfileExample = () => {
-  const form = useUserForm({
+  const form = useUserProfileForm({
     mode: "uncontrolled",
     initialValues: {
       name: "john",
@@ -14,7 +17,7 @@ const ProfileExample = () => {
   });
   return (
     <div className="w-full flex items-center justify-center h-screen">
-      <UserFormProvider form={form}>
+      <UserProfileFormProvider form={form}>
         <form
           onSubmit={form.onSubmit((data) => {
             console.log(data);
@@ -29,7 +32,7 @@ const ProfileExample = () => {
 
           <Profile />
         </form>
-      </UserFormProvider>
+      </UserProfileFormProvider>
     </div>
   );
 };

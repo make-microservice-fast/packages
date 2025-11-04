@@ -20,13 +20,8 @@ export interface RegisterFormProps {
 export interface RegisterProps {
   onSignUp: (v: RegisterFormProps) => void;
   initialValues: RegisterFormProps;
-  login_url?: string;
 }
-export const Register = ({
-  initialValues,
-  onSignUp,
-  login_url,
-}: RegisterProps) => {
+export const Register = ({ initialValues, onSignUp }: RegisterProps) => {
   const [hidePasswordTips, setHidePasswordTips] = useState(true);
   const form = useForm({
     initialValues: {
@@ -116,7 +111,7 @@ export const Register = ({
           />
 
           <Group justify="space-between" mt="xl">
-            <Anchor href={login_url ?? "/login"} size="xs" c="dimmed">
+            <Anchor href={"login"} size="xs" c="dimmed">
               Already have an account? Login
             </Anchor>
             <Button type="submit" radius="xl">
